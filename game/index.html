@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightshift: The Meridian Vault — a stealth game</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main id="app">
+  <header id="hud">
+    <div class="hud-left">
+      <span id="hud-level" class="hud-title">Nightshift: The Meridian Vault</span>
+      <span id="hud-state" class="hud-sub">Stay out of the cones</span>
+    </div>
+    <div class="hud-mid">
+      <span id="hud-shards" class="hud-chip">◆ 0 / 5</span>
+      <span id="hud-time" class="hud-chip">0:00</span>
+      <span id="hud-alert" class="pill unseen">UNSEEN</span>
+    </div>
+    <div class="hud-right">
+      <div id="hud-meter" class="meter" title="Detection 0%">
+        <div id="hud-meter-fill"></div>
+        <span class="meter-label">SPOTTED</span>
+      </div>
+      <button id="btn-mute" type="button" title="Mute (M)">🔊 Sound</button>
+      <button id="btn-help" type="button" title="How to play (H)">? Help</button>
+    </div>
+  </header>
+
+  <div id="stage">
+    <canvas id="game" width="960" height="640"></canvas>
+
+    <div id="overlay-title" class="overlay">
+      <div class="panel">
+        <p class="kicker">A stealth game</p>
+        <h1>NIGHTSHIFT</h1>
+        <h2>The Meridian Vault</h2>
+        <p class="story">You are Wren, an infiltrator in the Meridian Archive after dark.
+          Lift every data shard on the floor, slip past the guards and their
+          sweeping cones, and reach the exit unseen. Three floors stand
+          between you and the vault.</p>
+        <button id="btn-start" type="button" class="big">▶ Start the job</button>
+        <p class="controls">Move <b>WASD / arrows</b> · Run <b>Shift</b> (fast, loud) · Pause <b>P</b> ·
+          Restart <b>R</b> · Mute <b>M</b> · Help <b>H</b></p>
+        <p class="hint">Dark floor hides you. Yellow cones are watching. Red means run.</p>
+      </div>
+    </div>
+
+    <div id="overlay-briefing" class="overlay hidden">
+      <div class="panel">
+        <h2 id="briefing-title">Level 1</h2>
+        <p id="briefing-text" class="story"></p>
+        <button id="btn-begin" type="button" class="big">▶ Begin</button>
+      </div>
+    </div>
+
+    <div id="overlay-pause" class="overlay hidden">
+      <div class="panel">
+        <h2>Paused</h2>
+        <p class="story">The guards keep walking, but not while you are gone.</p>
+        <button id="btn-resume" type="button" class="big">▶ Resume</button>
+        <button id="btn-restart-pause" type="button">↻ Restart level</button>
+      </div>
+    </div>
+
+    <div id="overlay-leveldone" class="overlay hidden">
+      <div class="panel">
+        <h2>Floor cleared</h2>
+        <p id="leveldone-stats" class="story"></p>
+        <button id="btn-next" type="button" class="big">Next level →</button>
+      </div>
+    </div>
+
+    <div id="overlay-caught" class="overlay hidden">
+      <div class="panel">
+        <h2>Caught</h2>
+        <p id="caught-text" class="story"></p>
+        <button id="btn-retry" type="button" class="big">↻ Try again</button>
+      </div>
+    </div>
+
+    <div id="overlay-complete" class="overlay hidden">
+      <div class="panel">
+        <p class="kicker">The vault is yours</p>
+        <h2>Clean getaway</h2>
+        <p id="complete-stats" class="story"></p>
+        <button id="btn-again" type="button" class="big">↻ Play again</button>
+        <button id="btn-title-quit" type="button">Back to title</button>
+      </div>
+    </div>
+
+    <div id="overlay-help" class="overlay hidden">
+      <div class="panel">
+        <h2>How to play</h2>
+        <ul class="help-list">
+          <li><b>Move</b> with WASD or the arrow keys. <b>Shift</b> runs — faster, but guards hear it.</li>
+          <li><b>Guards</b> patrol fixed routes and watch a yellow cone. A wall or a crate blocks their sight.</li>
+          <li><b>Detection</b> fills the meter over a guard's head. At the top they chase you — break line of sight and they search, then give up.</li>
+          <li><b>Dark floor</b> (the blue-black tiles) hides you: detection fills three times slower there. The HUD says HIDDEN when you are in shadow.</li>
+          <li><b>Shards</b> (cyan diamonds) are the job. Take them all and the exit turns green.</li>
+          <li><b>Cameras</b> sweep back and forth on the last floor. Being seen by one alarms every guard.</li>
+          <li><b>P</b> pauses, <b>R</b> restarts the floor, <b>M</b> mutes, <b>H</b> closes this help.</li>
+        </ul>
+        <button id="btn-close-help" type="button" class="big">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <footer id="foot">
+    <span>Collect every ◆ shard, then reach the green EXIT. Stay out of the yellow cones.</span>
+    <span class="foot-keys">WASD move · Shift run · P pause · R restart · M mute</span>
+  </footer>
+</main>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
